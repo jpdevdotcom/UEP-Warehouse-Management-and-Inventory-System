@@ -1,0 +1,47 @@
+﻿@layout PublicLayout
+@page "/end-user"
+
+<body class="bg-light endUser-body">
+    <nav class="navbar end-user-navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+        <img src="Resources/uep_log.png" style="width: 2.5em; margin-right: .5em;" />
+        <a class="navbar-brand" href="#">UEP Warehouse Management and Inventory System</a>
+    </nav>
+    
+    <div class="nav-scroller bg-body shadow-sm end-user-nav-scroll">
+      <nav class="nav nav-underline" aria-label="Secondary navigation">
+            <p class="end-user-name active" aria-current="page" href="#">Welcome, <b>@LandingPageModal.LandingPageData.requestor_name!</b> Feel free to search your requested item.</p>
+      </nav>
+    </div>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="row">Item Description</th>
+                    <th scope="row">Unit</th>
+                    <th scope="row">Quantity</th>
+                    <th scope="row">Amount</th>
+                    <th scope="row">Requestor</th>
+                    <th scope="row">Division</th>
+                    <th scope="row">Office</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Computer Desktop</td>
+                    <td>Unit</td>
+                    <td>10</td>
+                    <td>5,999</td>
+                    <td>Jan Phillip Dacallos</td>
+                    <td></td>
+                    <td>Office of Student's Affairs</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+@code {
+
+}

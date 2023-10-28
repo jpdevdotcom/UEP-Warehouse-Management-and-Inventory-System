@@ -1,0 +1,44 @@
+﻿@layout PublicLayout
+@page "/"
+@inject NavigationManager Navigate
+
+<LandingPageModal @ref="_landingPageModal"></LandingPageModal>
+
+<div class="text-center main-container vh-100 text-white">
+    <div class="cover-container d-flex w-100 vh-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <nav class="nav gap-1 nav-masthead align-items-center justify-content-center float-md-start">
+                    <img src="Resources/uep_log.png" style="width: 2.5em; object-fit: contain" />
+                    <h4 class="mb-0">UEP WMIS</h4>
+                </nav>
+
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="nav-link active" aria-current="page" href="login">Login</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="px-3">
+            <h1 class="fw-bold" style="color: #FC8D00; font-size: 3em;">UEP Warehouse Management and Inventory System</h1>
+            <p class="lead">
+                <small>
+                    This is a set of policies and processes intended to organize the work of a warehouse
+                    or distribution center, and ensure that such a facility can operate efficiently and
+                    meet its objectives.
+                </small>
+            </p>
+
+            <button class="btn btn-lg btn-guest btn-secondary fw-bold" type="button" data-bs-toggle="modal"  data-bs-target="#exampleModal">Sign In as Guest</button>
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p>&#169; 2023</p>
+        </footer>
+    </div>
+</div>
+
+
+@code {
+    private LandingPageModal? _landingPageModal { get; set; }
+}

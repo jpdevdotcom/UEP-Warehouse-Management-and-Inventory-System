@@ -1,0 +1,22 @@
+﻿tbody button {
+    border: none;
+    background-color: transparent;
+}
+
+tbody button:hover {
+    color: #4BAE4F;
+}
+
+select {
+    cursor: pointer;
+}
+
+.page-link {
+    color: #070641;
+}
+
+@media (min-width: 641px) {
+    .input-group {
+        width: 35%;
+    }
+}

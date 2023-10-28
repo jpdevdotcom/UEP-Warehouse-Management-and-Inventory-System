@@ -1,0 +1,74 @@
+﻿@page "/track-stock"
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Track Stock</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-6 mb-3">
+                    <label for="validationDefault02" class="form-label">Stock ID</label>
+                    <input type="text" class="form-control" id="validationDefault02" disabled>
+                </div>
+
+                <form class="row card-1 g-3">
+                    <div class="col-md-6">
+                        <label for="validationDefault02" class="form-label">PO Number</label>
+                        <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault02" class="form-label">Fund Cluster</label>
+                        <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault02" class="form-label">Responsibility Center Code</label>
+                        <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault02" class="form-label">Remarks</label>
+                        <input type="text" class="form-control" id="validationDefault02" disabled>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="validationDefault02" class="form-label">Date Stocked Out</label>
+                        <input @bind="@StartDate" class="form-control" id="validationDefault02" disabled>
+                    </div>
+
+                    @*TABLE*@
+                    <div class="table-responsive">
+                        <table class="table table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="row">Item Description</th>
+                                    <th scope="row">Unit</th>
+                                    <th scope="row">Quantity</th>
+                                    <th scope="row">Amount</th>
+                                    <th scope="row">Office</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>Computer Desktop</td>
+                                    <td>Unit</td>
+                                    <td>10</td>
+                                    <td>5,999</td>
+                                    <td>Office of Students' Affairs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string StartDate { get; set; } = DateTime.Now.ToString("D");
+}

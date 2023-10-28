@@ -1,0 +1,47 @@
+﻿@page "/inventory-report"
+
+<div class="container">
+    <h3 class="bg-body shadow-sm">Inventory Report</h3>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card shadow-sm rounded">
+                <div class="card-header">
+                    Quarterly Report
+                </div>
+
+                <div class="card-body">
+                    <SfDateRangePicker style="padding: 1.5em;" Format="MMMM yyyy" TValue="DateTime?" Placeholder="Choose a range" Max="@MaxDate" ShowClearButton="true" Start="CalendarView.Year" Depth="CalendarView.Year" FullScreen="true"></SfDateRangePicker>
+
+
+                    <button class="btn btn-primary accordion-body submit-btn mt-3" type="submit">
+                        <i class="fa-solid fa-print pe-2"></i>
+                        <small>Generate Quarterly Report</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card shadow-sm rounded">
+                <div class="card-header">
+                    Annual Report
+                </div>
+
+                <div class="card-body">
+                    <SfDateRangePicker style="padding: 1.5em;" Format="yyyy" TValue="DateTime?" Placeholder="Choose a range" Max="@MaxDate" ShowClearButton="true" Start="CalendarView.Year" Depth="CalendarView.Year" FullScreen="true"></SfDateRangePicker>
+
+                    <button class="btn btn-primary accordion-body submit-btn mt-3" type="submit">
+                        <i class="fa-solid fa-print pe-2"></i>
+                        <small>Generate Annual Report</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public DateTime MaxDate { get; set; } = new DateTime(DateTime.Now.Year + 1, 12, 31);
+}

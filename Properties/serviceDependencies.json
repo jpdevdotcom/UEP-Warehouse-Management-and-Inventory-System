@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:UEP_Warehouse_Management_and_Inventory_SystemContextConnection"
+    }
+  }
+}

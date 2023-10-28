@@ -1,0 +1,64 @@
+﻿@inject NavigationManager navigate
+
+<div class="modal modal-signin fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-5 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <!-- <h5 class="modal-title">Modal title</h5> -->
+                <h2 class="fw-bold mb-0">Welcome!</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form class="">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-4 @LandingPageData.is_valid" id="floatingInput" @bind="@LandingPageData.requestor_name" placeholder="name@example.com">
+                        <label for="floatingInput">Requestor's Name</label>
+
+                        <div class="@LandingPageData.input_feedback text-end">
+                            @LandingPageData.feedback_message
+                        </div>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" data-bs-dismiss="@LandingPageData.dismiss_modal" type="button" @onclick="@ConfirmProceed">Proceed</button>
+                    <p><small>By proceeding, you will view the items you had requested.</small></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+    }
+
+    public class LandingPageData
+    {
+        public static string? requestor_name { get; set;  }
+
+        public static string? input_feedback { get; set; }
+        public static string? feedback_message { get; set; }
+        public static string? is_valid { get; set; }
+
+        public static string? dismiss_modal { get; set; }
+    }
+
+
+    private void ConfirmProceed()
+    {
+        if (LandingPageData.requestor_name is not null)
+        {
+            navigate.NavigateTo("end-user");
+
+        } else
+        {
+            Console.WriteLine("Empty!");
+
+            LandingPageData.input_feedback = "invalid-feedback";
+            LandingPageData.feedback_message = "Please enter requestor's name!";
+            LandingPageData.is_valid = "is-invalid";
+            LandingPageData.dismiss_modal = "modal";
+        }
+    }
+}

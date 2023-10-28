@@ -1,0 +1,116 @@
+﻿@layout PublicLayout
+@page "/login"
+@inject NavigationManager navigate
+
+<PageTitle>UEP WMIS Login</PageTitle>
+
+<!-- Section: Design Block -->
+<section class="">
+    <!-- Jumbotron -->
+    <div class="d-flex justify-content-center align-items-center vh-100" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center d-flex justify-content-center align-items-center">
+                <div class="col-lg-6 mb-lg-0 text-start">
+                    <h1 class="display-3 fw-bold">
+                        UEP Warehouse <br />
+                        <span class="text-primary">Management and Inventory System</span>
+                    </h1>
+                    <p style="color: hsl(217, 10%, 50.8%); text-indent: 30px;">
+                        This is a set of policies and processes intended to organize the work of a warehouse 
+                        or distribution center, and ensure that such a facility can operate efficiently and 
+                        meet its objectives.
+                    </p>
+                </div>
+
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="card shadow-sm">
+                        <div class="card-body py-4 px-md-5">
+                            <img src="/Resources//uep_log.png" class="mx-auto d-block mb-4" style="width: 10em;" />
+
+                            <form>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                                    <input type="text" @bind="@LoginData.username" class="form-control text-muted py-2 @invalidUsername" @onkeyup="@ValidateEnter" placeholder="Enter username..." aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock-fill w-25"></i></span>
+                                    <input type="password" @bind="@LoginData.password" class="form-control text-muted py-2 @invalidPassword" @onkeyup="@ValidateEnter" placeholder="Enter password..." aria-label="Password" aria-describedby="basic-addon1">
+                                    <div class="@invalidPasswordFeedback text-end">
+                                        @invalidPasswordMsg
+                                    </div>  
+                                </div>
+
+                                <div class="d-grid gap-2 mx-auto ">
+                                    <button class="btn btn-primary py-2" type="button" @onclick="@ValidateClick">Sign In</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <small class="text-muted">&#64;UEP WMIS</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+@code {
+    private string? invalidUsername { get; set; }
+    private string? invalidUsernameMsg { get; set; }
+    private string? invalidUsernameFeedback { get; set; }
+    private string? invalidPassword { get; set; }
+    private string? invalidPasswordMsg { get; set; }
+    private string? invalidPasswordFeedback { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LoginData.username = "";
+        LoginData.password = "";
+
+        LoginData.isLoggedIn = false;
+    }
+
+    private void ValidateInput()
+    {
+        if ((LoginData.username == "admin" && LoginData.password == "admin") || (LoginData.username == "inspectorate" && LoginData.password == "inspectorate") ||
+        (LoginData.username == "oic" && LoginData.password == "oic") || (LoginData.username == "wstaff" && LoginData.password == "wstaff"))
+        {
+            invalidUsername = "";
+            invalidUsernameMsg = "";
+            invalidUsernameFeedback = "";
+            invalidPassword = "";
+            invalidPasswordMsg = "";
+            invalidPasswordFeedback = "";
+
+            LoginData.isLoggedIn = true;
+            navigate.NavigateTo("/index");
+        }
+        else
+        {
+            invalidUsername = "is-invalid";
+            invalidUsernameMsg = "Invalid Username!";
+            invalidUsernameFeedback = "invalid-feedback";
+            invalidPassword = "is-invalid";
+            invalidPasswordMsg = "Invalid Password!";
+            invalidPasswordFeedback = "invalid-feedback";
+
+        }
+    }
+
+    private void ValidateEnter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            ValidateInput();
+        }
+    }
+
+    private void ValidateClick()
+    {
+        ValidateInput();
+    }
+}

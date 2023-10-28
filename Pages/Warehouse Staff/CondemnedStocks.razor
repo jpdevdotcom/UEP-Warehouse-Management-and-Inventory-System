@@ -1,0 +1,75 @@
+﻿@page "/condemned-stocks"
+@inject IHttpClientFactory clientFactory
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JS
+
+<div class="container">
+    <h3 class="bg-body shadow-sm">Condemned Stocks</h3>
+
+    <div class="table-responsive-sm">
+        <table class="table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="row">Condemn ID</th>
+                    <th scope="row">Stock ID</th>
+                    <th scope="row">PO Number</th>
+                    <th scope="row">Item Description</th>
+                    <th scope="row">Total Qty.</th>
+                    <th scope="row">Consumed Qty.</th>
+                    <th scope="row">Available Qty.</th>
+                    <th scope="row">Requestor</th>
+                    <th scope="row">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var _condemnedStocks in condemnedStocks)
+                {
+                    <tr>
+                        <td scope="row">@_condemnedStocks.condemnID</td>
+                        <td>@_condemnedStocks.stockID</td>
+                        <td>@_condemnedStocks.poNumber</td>
+                        <td>@_condemnedStocks.itemDescription</td>
+                        <td>@_condemnedStocks.totalQty</td>
+                        <td>@_condemnedStocks.consumedQty</td>
+                        <td>@_condemnedStocks.availableQty</td>
+                        <td>@_condemnedStocks.requestor</td>
+                        <td>@_condemnedStocks.status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    public class CondemnedStocksClass
+    {
+        public int condemnID { get; set; }
+        public int stockID { get; set; }
+        public int poNumber { get; set; }
+        public string itemDescription { get; set; }
+        public int totalQty { get; set; }
+        public int consumedQty { get; set; }
+        public int availableQty { get; set; }
+        public string requestor { get; set; }
+        public string status { get; set; }
+    }
+
+    private IEnumerable<CondemnedStocksClass> condemnedStocks = Array.Empty<CondemnedStocksClass>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await refreshCondemnedStocksList();
+    }
+
+    private async Task refreshCondemnedStocksList()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, config["API_URL"] + "Stocks/condemn");
+        var client = clientFactory.CreateClient();
+        var response = await client.SendAsync(request);
+
+        using var responseStream = await response.Content.ReadAsStreamAsync();
+        condemnedStocks = await JsonSerializer.DeserializeAsync<IEnumerable<CondemnedStocksClass>>(responseStream);
+    }
+}

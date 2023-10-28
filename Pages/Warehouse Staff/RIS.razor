@@ -1,0 +1,81 @@
+﻿@page "/inventory/ris"
+
+<div class="container">
+
+    <h3 class="bg-body shadow-sm">Requisition and Issue Slip</h3>
+
+    <div class="bg-body shadow-sm rounded">
+        <form class="row card-1 p-3">
+            <div class="col-md-3">
+                <label for="validationDefault04" class="form-label">Stock ID</label>
+                <select class="form-select" id="validationDefault04" required>
+                    <option selected disabled value="">Select Stock ID...</option>
+                    <option>0001</option>
+                    <option>0002</option>
+                    <option>0003</option>
+                    <option>0004</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">PO Number</label>
+                <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">Fund Cluster</label>
+                <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">Responsibility Center Code</label>
+                <input type="text" class="form-control" id="validationDefault02" value="2023010109" disabled>
+            </div>
+
+            @*TABLE*@
+            <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="row">Item Description</th>
+                            <th scope="row">Unit</th>
+                            <th scope="row">Quantity</th>
+                            <th scope="row">Amount</th>
+                            <th scope="row">Requestor</th>
+                            <th scope="row">Division</th>
+                            <th scope="row">Office</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Computer Desktop</td>
+                            <td>Unit</td>
+                            <td>10</td>
+                            <td>5,999</td>
+                            <td>Jan Phillip Dacallos</td>
+                            <td></td>
+                            <td>Office of Student's Affairs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr />
+
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">Remarks</label>
+                <input type="text" class="form-control" id="validationDefault02" value="Warehouse" required>
+            </div>
+            <div class="col-md-3">
+                <label for="validationDefault02" class="form-label">Item Quantity <i><small>(to be stocked out)</small></i></label>
+                <input type="number" class="form-control" id="validationDefault02" required>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary accordion-body submit-btn mt-3" type="submit"><i class="fa-solid fa-truck-ramp-box pe-2"></i>Issue Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+    
+}

@@ -1,0 +1,19 @@
+﻿.btn {
+    background-color: #070641;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #595980;
+}
+
+h1 {
+    color: #070641;
+}
+
+.header-img {
+    background-color: #070641;
+    object-fit: cover;
+    height: 6em;
+    border-bottom: 3px solid #f7f7f7;
+}

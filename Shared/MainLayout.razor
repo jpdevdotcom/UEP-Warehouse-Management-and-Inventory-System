@@ -1,0 +1,56 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager nav
+
+@if (LoginData.isLoggedIn)
+{
+    <PageTitle>UEP Warehouse Management and Inventory System</PageTitle>
+    <div class="page">
+        <div class="sidebar">
+            @if (LoginData.username == "admin" && LoginData.password == "admin")
+            {
+                <AdminNav />
+
+                LoginData.user_lname = "Dacallos";
+            } 
+
+            @if (LoginData.username == "inspectorate" && LoginData.password == "inspectorate")
+            {
+                <InspectorateNav />
+
+                LoginData.user_lname = "Resuello";
+            }
+
+            @if (LoginData.username == "oic" && LoginData.password == "oic")
+            {
+                <OICNav />
+
+                LoginData.user_lname = "Abuke";
+            }
+
+            @if (LoginData.username == "wstaff" && LoginData.password == "wstaff")
+            {
+                <WarehouseStaffNav />
+
+                LoginData.user_lname = "Tomas";
+            }
+        </div>
+
+        <main>
+            <div class="top-row px-2">
+                <div class="head">
+                    <img src="/Resources/uep_log.png" />
+                    <p>UEP Warehouse Management and Inventory System</p>
+                </div>
+            </div>
+
+            <article class="content px-1">
+                @Body
+            </article>
+        </main>
+    </div>
+} else
+{
+    <div>
+        <p style="color: red;">INVALID</p>
+    </div>
+}

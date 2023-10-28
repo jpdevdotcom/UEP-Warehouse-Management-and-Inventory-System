@@ -1,0 +1,120 @@
+﻿@page "/stocks"
+@inject IHttpClientFactory clientFactory
+@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject IJSRuntime JS
+
+<TrackStock @ref="trackStock"></TrackStock>
+
+<div class="container">
+
+    <h3 class="bg-body shadow-sm">Stocks</h3>
+
+    <div class="bg-body shadow-sm p-3 rounded">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected disabled>Filter by...</option>
+                    <option value="1">Stock ID</option>
+                    <option value="2">P.O. Number</option>
+                    <option value="3">Requestor's Lastname</option>
+                </select>
+            </span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <span class="input-group-text" id="inputGroup-sizing-sm"><span class="oi oi-magnifying-glass"></span></span>
+        </div>
+
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <th scope="row">Stock ID</th>
+                        <th scope="row">Unit</th>
+                        <th scope="row">Item Description</th>
+                        <th scope="row">Quantity</th>
+                        <th scope="row">Unit Cost</th>
+                        <th scope="row">Amount</th>
+                        <th scope="row">PR Number</th>
+                        <th scope="row">PR Date</th>
+                        <th scope="row">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(var _stock in stocks)
+                    {
+                        <tr>
+                            <td>@_stock.SaveId</td>
+                            <td>@_stock.StockNo</td>
+                            <td>@_stock.Unit</td>
+                            <td>@_stock.Description</td>
+                            <td>@_stock.Quantity</td>
+                            <td>@_stock.UnitCost</td>
+                            <td>@_stock.Amount</td>
+                            <td>@_stock.PRNo</td>
+                            <td>@_stock.PRDate</td>
+                            <td>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-magnifying-glass-location fa-lg"></i></button>
+                                <button type="button"><i class="fa-solid fa-eye fa-lg"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+@code {
+    private TrackStock? trackStock { get; set; }
+
+    public class StocksClass {
+        public int SaveId { get; set; }
+        public int StockNo { get; set; }
+        public string Unit { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public string UnitCost { get; set; }
+        public string Amount { get; set; }
+        public int PRNo { get; set; }
+        public string PRDate { get; set; }
+        public bool is_inspected { get; set; }
+        public bool is_accepted { get; set; }
+        public bool is_available { get; set; }
+    }
+
+    private IEnumerable<StocksClass> stocks = Array.Empty<StocksClass>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await refreshStockList();
+    }
+
+    private async Task refreshStockList()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, config["API_URL"]+"Stocks");
+        var client = clientFactory.CreateClient();
+        var response = await client.SendAsync(request);
+
+        using var responseStream = await response.Content.ReadAsStreamAsync();
+        stocks = await JsonSerializer.DeserializeAsync<IEnumerable<StocksClass>>(responseStream);
+    }
+}

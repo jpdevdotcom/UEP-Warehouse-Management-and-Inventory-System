@@ -1,0 +1,83 @@
+﻿@page "/users"
+
+<AddUser @ref="_addUser"></AddUser>
+
+<div class="container">
+    <h3 class="bg-body shadow-sm">User Management</h3>
+
+    <div class="bg-body shadow-sm p-3 rounded">
+        <div class="row mb-3">
+            <div class="input-group col-md-6 input-group-sm">
+                <span class="input-group-text" id="inputGroup-sizing-sm">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected disabled>Filter by...</option>
+                        <option value="1">User ID</option>
+                        <option value="3">User's Lastname</option>
+                    </select>
+                </span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><span class="oi oi-magnifying-glass"></span></span>
+            </div>
+
+            <div class="col-md-2 d-grid gap-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddUser"><i class="bi bi-person-plus-fill pe-2"></i>Add User</button>
+            </div>
+        </div>
+
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="row">User ID</th>
+                        <th scope="row">First Name</th>
+                        <th scope="row">Last Name</th>
+                        <th scope="row">Position</th>
+                        <th scope="row">Contact Number</th>
+                        <th scope="row">Email Address</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td scope="row">204093</td>
+                        <td>Jan Phillip</td>
+                        <td>Dacallos</td>
+                        <td>Inspectorate</td>
+                        <td>09773440291</td>
+                        <td>jphillipdacallos@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">204094</td>
+                        <td>Juan</td>
+                        <td>Dela Cruz</td>
+                        <td>Supply Management</td>
+                        <td>09663440291</td>
+                        <td>juandelacruz@gmail.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="">1</a></li>
+                <li class="page-item"><a class="page-link" href="">2</a></li>
+                <li class="page-item"><a class="page-link" href="">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+@code {
+    private AddUser? _addUser { get; set; }
+}

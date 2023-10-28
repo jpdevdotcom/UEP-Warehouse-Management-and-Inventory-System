@@ -1,0 +1,10 @@
+﻿.control-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 40px 0px 0px;
+}
+
+.example-label {
+    font-size: 14px;
+    margin-bottom: 6px;
+}

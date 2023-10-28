@@ -1,0 +1,27 @@
+﻿@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Calendars
+
+@using System.Text.Json
+@using System.Text.Json.Serialization
+
+@using UEP_Warehouse_Management_and_Inventory_System
+@using UEP_Warehouse_Management_and_Inventory_System.Shared
+@using UEP_Warehouse_Management_and_Inventory_System.Pages
+@using UEP_Warehouse_Management_and_Inventory_System.Access
+@using UEP_Warehouse_Management_and_Inventory_System.Access.Users
+@using UEP_Warehouse_Management_and_Inventory_System.Pages.Warehouse_Staff
+@using UEP_Warehouse_Management_and_Inventory_System.Pages.Supply_Manager
+@using UEP_Warehouse_Management_and_Inventory_System.Pages.Admin
+@using UEP_Warehouse_Management_and_Inventory_System.Pages.Inspectorate
+@using UEP_Warehouse_Management_and_Inventory_System.Pages.SharedPages
+
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@attribute [Microsoft.AspNetCore.Authorization.AllowAnonymous]
